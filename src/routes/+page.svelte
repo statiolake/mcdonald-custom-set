@@ -81,7 +81,7 @@
     <div class="search-box">
       <input
         type="text"
-        placeholder="🔍 アイテムを検索..."
+        placeholder="アイテムを検索..."
         bind:value={filterText}
         on:keydown={(e) => {
           if (e.key === 'Enter' && filteredItems.length > 0) {
@@ -149,7 +149,7 @@
   <div class="card optimal-set">
     <h2>最適なセット</h2>
     <button class="calculate-button" on:click={calculateSet}>
-      <span class="icon">🔄</span> 最適なセットを計算
+       最適なセットを計算
     </button>
     {#if optimalSet.length > 0}
       <ul class="result-list">
@@ -180,6 +180,11 @@
 </main>
 
 <style>
+  :global(body) {
+    background-color: #f7f7f7;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  }
+
   .container {
     max-width: 800px;
     margin: 2rem auto;
@@ -187,24 +192,34 @@
   }
 
   h1 {
-    color: #333;
+    color: #1a1a1a;
     text-align: center;
-    margin-bottom: 2rem;
-    font-size: 1.8rem;
+    margin-bottom: 2.5rem;
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: -0.5px;
   }
 
   h2 {
-    color: #444;
-    margin-bottom: 1rem;
-    font-size: 1.3rem;
+    color: #1a1a1a;
+    margin-bottom: 1.25rem;
+    font-size: 1.4rem;
+    font-weight: 600;
+    letter-spacing: -0.3px;
   }
 
   .card {
     background: white;
-    border-radius: 12px;
-    padding: 1.5rem;
-    margin-bottom: 1.5rem;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 16px;
+    padding: 1.75rem;
+    margin-bottom: 1.75rem;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
   }
 
   .search-box {
@@ -214,122 +229,141 @@
 
   input[type="text"] {
     width: 100%;
-    padding: 0.8rem;
+    padding: 0.875rem;
     font-size: 1rem;
-    border: 2px solid #eee;
-    border-radius: 8px;
-    transition: border-color 0.2s;
+    border: 2px solid #e5e5e5;
+    border-radius: 12px;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+    box-sizing: border-box;
   }
 
   input[type="text"]:focus {
     outline: none;
-    border-color: #4CAF50;
+    border-color: #2196F3;
+    box-shadow: 0 4px 12px rgba(33, 150, 243, 0.1);
   }
 
   .suggestions {
     position: absolute;
-    top: 100%;
+    top: calc(100% + 4px);
     left: 0;
     right: 0;
     background: white;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    max-height: 200px;
+    border-radius: 12px;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+    max-height: 240px;
     overflow-y: auto;
     z-index: 1000;
   }
 
   .suggestion-item {
     width: 100%;
-    padding: 0.8rem;
+    padding: 1rem;
     text-align: left;
     border: none;
     background: none;
     cursor: pointer;
-    transition: background-color 0.2s;
+    transition: all 0.2s ease;
+    color: #1a1a1a;
   }
 
   .suggestion-item:hover {
-    background-color: #f5f5f5;
+    background-color: #FFC72C;
+    color: #1a1a1a;
   }
 
   .count-selector {
-    margin-top: 1rem;
+    margin-top: 1.25rem;
   }
 
   .count-input {
-    width: 80px;
-    padding: 0.5rem;
-    border: 2px solid #eee;
-    border-radius: 6px;
-    margin: 0 0.5rem;
+    width: 100px;
+    padding: 0.75rem;
+    border: 2px solid #e5e5e5;
+    border-radius: 8px;
+    margin: 0 0.75rem;
+    font-size: 1rem;
+    transition: all 0.2s ease;
+  }
+
+  .count-input:focus {
+    outline: none;
+    border-color: #DA291C;
+    box-shadow: 0 4px 12px rgba(218, 41, 28, 0.1);
   }
 
   .selected-item {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0.8rem;
-    margin: 0.5rem 0;
-    background: #f8f8f8;
-    border-radius: 8px;
-    transition: transform 0.2s;
+    padding: 1rem;
+    margin: 0.75rem 0;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    transition: all 0.2s ease;
   }
 
   .selected-item:hover {
     transform: translateX(4px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   }
 
   .item-controls {
     display: flex;
     align-items: center;
-    gap: 0.8rem;
+    gap: 1rem;
   }
 
   .remove-button {
     background: none;
     border: none;
-    color: #ff4444;
+    color: #2196F3;
     cursor: pointer;
     font-size: 1.2rem;
-    padding: 0.2rem 0.5rem;
-    border-radius: 4px;
-    transition: background-color 0.2s;
+    padding: 0.4rem 0.8rem;
+    border-radius: 8px;
+    transition: all 0.2s ease;
   }
 
   .remove-button:hover {
-    background-color: #ffeeee;
+    background-color: rgba(33, 150, 243, 0.1);
   }
 
   .calculate-button {
     width: 100%;
-    padding: 1rem;
-    background-color: #4CAF50;
+    padding: 1.25rem;
+    background-color: #2196F3;
     color: white;
     border: none;
-    border-radius: 8px;
+    border-radius: 12px;
     cursor: pointer;
-    font-size: 1rem;
+    font-size: 1.1rem;
+    font-weight: 600;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 0.5rem;
-    transition: background-color 0.2s;
+    gap: 0.75rem;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 12px rgba(33, 150, 243, 0.2);
   }
 
   .calculate-button:hover {
-    background-color: #45a049;
+    background-color: #1976D2;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(33, 150, 243, 0.3);
   }
 
   .result-list {
-    margin-top: 1rem;
+    margin-top: 1.25rem;
   }
 
   .result-item, .total-price {
     display: flex;
     justify-content: space-between;
-    padding: 0.8rem;
-    border-bottom: 1px solid #eee;
+    padding: 1rem;
+    border-bottom: 1px solid #e5e5e5;
   }
 
   .set-info {
@@ -337,45 +371,55 @@
   }
 
   .set-name {
-    font-weight: bold;
-    margin-bottom: 0.5rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
     display: block;
+    color: #1a1a1a;
   }
 
   .set-items {
-    font-size: 0.9rem;
+    font-size: 0.95rem;
     color: #666;
-    margin: 0.5rem 0;
+    margin: 0.75rem 0;
     list-style: none;
-    padding-left: 1rem;
+    padding-left: 1.25rem;
   }
 
   .set-items li {
-    margin: 0.2rem 0;
+    margin: 0.4rem 0;
+    transition: color 0.2s ease;
+  }
+
+  .set-items li:hover {
+    color: #1a1a1a;
   }
 
   .total-price {
-    font-weight: bold;
-    border-top: 2px solid #eee;
-    margin-top: 0.5rem;
+    font-weight: 600;
+    border-top: 2px solid #e5e5e5;
+    margin-top: 0.75rem;
+    padding-top: 1.25rem;
+    font-size: 1.1rem;
   }
 
   .set-price {
-    color: #4CAF50;
-    font-weight: bold;
-    margin-left: 1rem;
+    color: #2196F3;
+    font-weight: 600;
+    margin-left: 1.25rem;
     white-space: nowrap;
   }
 
   .empty-message {
     color: #666;
     text-align: center;
-    padding: 1rem;
-    font-style: italic;
+    padding: 1.25rem;
+    font-style: normal;
+    font-weight: 500;
   }
 
   .icon {
     display: inline-block;
+    font-size: 1.2rem;
   }
 
   @media (max-width: 600px) {
@@ -384,11 +428,17 @@
     }
 
     .card {
-      padding: 1rem;
+      padding: 1.25rem;
+      border-radius: 12px;
     }
 
     h1 {
-      font-size: 1.5rem;
+      font-size: 1.6rem;
+      margin-bottom: 2rem;
+    }
+
+    .calculate-button {
+      padding: 1rem;
     }
   }
 </style>
