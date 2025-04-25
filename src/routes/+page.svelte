@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { calculateOptimalSet, type Product } from '$lib/menu';
+  import { calculateOptimalSet, expandProducts, type ProductInstance } from '$lib/menu';
   import { products } from '$lib/products';
 
   interface SelectedItem {
@@ -8,16 +8,19 @@
   }
 
   let selectedItems: SelectedItem[] = [];
-  let optimalSet: Product[] = [];
+  let optimalSet: ProductInstance[] = [];
   let allItems: string[] = [];
   let selectedItem: string | null = null;
   let itemCount: number = 1;
   let filterText: string = '';
   let totalPrice: number = 0;
 
+  // すべての商品を展開
+  const expandedProducts = expandProducts(products);
+
   // 全てのアイテムを抽出し、ユニークなリストを作成
   $: allItems = Array.from(new Set(
-    products.flatMap((product: Product) =>
+    expandedProducts.flatMap((product: ProductInstance) =>
       product.items.map(item => item.name)
     )
   )).sort();
@@ -152,7 +155,16 @@
       <ul class="result-list">
         {#each optimalSet as set}
           <li class="result-item">
-            <span class="set-name">{set.name}</span>
+            <div class="set-info">
+              <span class="set-name">{set.name}</span>
+              <ul class="set-items">
+                {#each set.items as item}
+                  <li>
+                    {item.name} × {item.count}
+                  </li>
+                {/each}
+              </ul>
+            </div>
             <span class="set-price">¥{set.price.toLocaleString()}</span>
           </li>
         {/each}
@@ -320,6 +332,28 @@
     border-bottom: 1px solid #eee;
   }
 
+  .set-info {
+    flex: 1;
+  }
+
+  .set-name {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    display: block;
+  }
+
+  .set-items {
+    font-size: 0.9rem;
+    color: #666;
+    margin: 0.5rem 0;
+    list-style: none;
+    padding-left: 1rem;
+  }
+
+  .set-items li {
+    margin: 0.2rem 0;
+  }
+
   .total-price {
     font-weight: bold;
     border-top: 2px solid #eee;
@@ -329,6 +363,8 @@
   .set-price {
     color: #4CAF50;
     font-weight: bold;
+    margin-left: 1rem;
+    white-space: nowrap;
   }
 
   .empty-message {

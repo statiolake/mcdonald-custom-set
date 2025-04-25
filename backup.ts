@@ -1,39 +1,66 @@
-export const products: Product[] = [
-	// ソース類
-	{
-		name: 'エッグタルタルソース',
-		items: [{ name: 'エッグタルタルソース', count: 1, category: 'other' }],
-		price: 40
-	},
-	{
-		name: '完熟トマトのピッツァ風ソース',
-		items: [{ name: '完熟トマトのピッツァ風ソース', count: 1, category: 'other' }],
-		price: 40
-	},
-	{
-		name: 'バーベキューソース',
-		items: [{ name: 'バーベキューソース', count: 1, category: 'other' }],
-		price: 40
-	},
-	{
-		name: 'マスタードソース',
-		items: [{ name: 'マスタードソース', count: 1, category: 'other' }],
-		price: 40
-	},
+// セット商品のドリンク
+const setDrink: ChoiceItem = {
+	choices: [
+		{ name: 'ドリンクS', count: 1, priceAdjustment: 0 },
+		{ name: 'ドリンクM', count: 1, priceAdjustment: 130 },
+		{ name: 'ドリンクL', count: 1, priceAdjustment: 180 }
+	]
+};
 
-	// ドリンク類
-	{
-		name: 'ドリンク',
-		items: [{ name: 'ドリンク', count: 1, category: 'drink' }],
-		price: 140
-	},
+// ポテト
+const setFriedPotato: ChoiceItem = {
+	choices: [
+		{ name: 'マックフライポテトS', count: 1, priceAdjustment: 0 },
+		{ name: 'マックフライポテトM', count: 1, priceAdjustment: 130 },
+		{ name: 'マックフライポテトL', count: 1, priceAdjustment: 180 }
+	]
+};
+
+// オプションのナゲット
+const setNugget: ChoiceItem = {
+	choices: [
+		{ name: 'なし', count: 0, priceAdjustment: 0 },
+		{ name: '5ピース', count: 1, priceAdjustment: 200 }
+	]
+};
+
+// ソース
+const setNuggetSauce: ChoiceItem = {
+	choices: [
+		{
+			name: 'エッグタルタルソース',
+			count: 1,
+			price: 0
+		},
+		{
+			name: '完熟トマトのピッツァ風ソース',
+			count: 1,
+			price: 0
+		},
+		{
+			name: 'バーベキューソース',
+			count: 1,
+			price: 0
+		},
+		{
+			name: 'マスタードソース',
+			count: 1,
+			price: 0
+		}
+	]
+};
+
+export const products: Product[] = [
 	// 夜マック
 	{
 		name: 'ごはんチキンタツタ タルタル南蛮 セット',
 		items: [
 			{ name: 'ごはんチキンタツタ タルタル南蛮', count: 1, category: 'other' },
 			{ name: 'マックフライポテト', count: 1, category: 'friedpotato' },
-			{ name: 'ドリンク', count: 1, category: 'drink' }
+			setDrink,
+			setFriedPotato,
+			setNugget,
+			setNuggetSauce
 		],
 		price: 850
 	},
@@ -880,5 +907,19 @@ export const products: Product[] = [
 		name: 'メガマフィン',
 		items: [{ name: 'メガマフィン', count: 1, category: 'other' }],
 		price: 420
+	},
+
+	// ソース類
+	{
+		name: 'ソース',
+		items: [setNuggetSauce],
+		price: 40
+	},
+
+	// ドリンク類
+	{
+		name: 'ドリンク',
+		items: [setDrink],
+		price: 140
 	}
 ];

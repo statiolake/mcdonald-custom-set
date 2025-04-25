@@ -1,4 +1,23 @@
-import type { ChoiceItem, Product } from './menu';
+export interface Product {
+	name: string;
+	items: Item[];
+	price: number;
+}
+
+export type Item = SimpleItem | ChoiceItem;
+
+export interface SimpleItem {
+	name: string;
+	count: number;
+}
+
+export interface ChoiceItem {
+	choices: Array<{
+		name: string;
+		count: number;
+		priceAdjustment: number;
+	}>;
+}
 
 // セット商品のドリンク
 const setDrink: ChoiceItem = {
@@ -39,15 +58,14 @@ const breakfastPotato: ChoiceItem = {
 // オプションのナゲット
 const setNugget: ChoiceItem = {
 	choices: [
-		{ name: 'チキンマックナゲットなし', count: 0, priceAdjustment: 0 },
-		{ name: 'チキンマックナゲット', count: 5, priceAdjustment: 200 }
+		{ name: 'なし', count: 0, priceAdjustment: 0 },
+		{ name: '5ピース', count: 1, priceAdjustment: 200 }
 	]
 };
 
 // ソース
 const setNuggetSauce: ChoiceItem = {
 	choices: [
-		{ name: 'ナゲットソースなし', count: 0, priceAdjustment: 0 },
 		{ name: 'エッグタルタルソース', count: 1, priceAdjustment: 0 },
 		{ name: '完熟トマトのピッツァ風ソース', count: 1, priceAdjustment: 0 },
 		{ name: 'バーベキューソース', count: 1, priceAdjustment: 0 },
@@ -571,16 +589,16 @@ export const products: Product[] = [
 	{
 		name: 'ポテナゲ大',
 		items: [
-			{ name: 'マックフライポテトL', count: 1 },
-			{ name: 'チキンマックナゲット', count: 10 }
+			{ name: 'マックフライポテト', count: 1 },
+			{ name: 'チキンマックナゲット', count: 1 }
 		],
 		price: 600
 	},
 	{
 		name: 'ポテナゲ特大',
 		items: [
-			{ name: 'マックフライポテトL', count: 2 },
-			{ name: 'チキンマックナゲット', count: 15 }
+			{ name: 'マックフライポテト', count: 2 },
+			{ name: 'チキンマックナゲット', count: 1 }
 		],
 		price: 960
 	},
@@ -616,7 +634,7 @@ export const products: Product[] = [
 	},
 	{
 		name: 'マックフライポテト',
-		items: [setFriedPotato],
+		items: [{ name: 'マックフライポテト', count: 1 }],
 		price: 200
 	},
 	{

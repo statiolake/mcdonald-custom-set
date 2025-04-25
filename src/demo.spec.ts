@@ -1,26 +1,39 @@
-import { calculateOptimalSet } from '$lib/menu';
-import { describe, expect, it } from 'vitest';
+import { expect, test } from 'vitest';
+import { expandProducts } from './lib/menu';
+import { products } from './lib/products';
 
-describe('calculateOptimalSet', () => {
-  it('should return an empty array when no items are selected', () => {
-    const result = calculateOptimalSet([]);
-    expect(result).toEqual([]);
-  });
+test('商品の選択肢展開', () => {
+  const expanded = expandProducts(products);
 
-  it('should calculate the optimal set for a single item', () => {
-    const selectedItems = [{ name: 'マックフライポテト', count: 1, category: 'friedpotato' }];
-    const result = calculateOptimalSet(selectedItems);
-    // TODO: Update expected result based on the algorithm implementation
-    expect(result).toEqual([]);
-  });
+  // ドリンクのサイズ選択とナゲットの有無で6通りのパターンができるはず
+  // ドリンク: S/M/L の3通り
+  // ナゲット: なし/5ピース の2通り
+  const bigMacSets = expanded.filter(p => p.name.startsWith('ビッグマック セット'));
+  expect(bigMacSets).toHaveLength(6);
 
-  it('should calculate the optimal set for multiple items', () => {
-    const selectedItems = [
-      { name: 'マックフライポテト', count: 1, category: 'friedpotato' },
-      { name: 'チキンマックナゲット', count: 1, category: 'other' }
-    ];
-    const result = calculateOptimalSet(selectedItems);
-    // TODO: Update expected result based on the algorithm implementation
-    expect(result).toEqual([]);
-  });
+  // 価格のテスト
+  const bigMacSetS = bigMacSets.find(p => p.name.includes('S') && p.name.includes('なし'));
+  expect(bigMacSetS?.price).toBe(750);  // 基本価格
+
+  const bigMacSetM = bigMacSets.find(p => p.name.includes('M') && p.name.includes('なし'));
+  expect(bigMacSetM?.price).toBe(880);  // 基本価格 + 130円
+
+  const bigMacSetL = bigMacSets.find(p => p.name.includes('L') && p.name.includes('なし'));
+  expect(bigMacSetL?.price).toBe(930);  // 基本価格 + 180円
+
+  const bigMacSetSWithNugget = bigMacSets.find(p => p.name.includes('S') && p.name.includes('5ピース'));
+  expect(bigMacSetSWithNugget?.price).toBe(950);  // 基本価格 + 200円
+
+  const bigMacSetMWithNugget = bigMacSets.find(p => p.name.includes('M') && p.name.includes('5ピース'));
+  expect(bigMacSetMWithNugget?.price).toBe(1080);  // 基本価格 + 130円 + 200円
+
+  const bigMacSetLWithNugget = bigMacSets.find(p => p.name.includes('L') && p.name.includes('5ピース'));
+  expect(bigMacSetLWithNugget?.price).toBe(1130);  // 基本価格 + 180円 + 200円
+
+  // 展開された商品のアイテム数をテスト
+  const bigMacSetSNoNugget = bigMacSets.find(p => p.name.includes('S') && p.name.includes('なし'));
+  expect(bigMacSetSNoNugget?.items).toHaveLength(3);  // ビッグマック、ポテト、ドリンク（ナゲットなしは含まれない）
+
+  const bigMacSetSWithNuggetItems = bigMacSets.find(p => p.name.includes('S') && p.name.includes('5ピース'));
+  expect(bigMacSetSWithNuggetItems?.items).toHaveLength(4);  // ビッグマック、ポテト、ドリンク、ナゲット
 });
