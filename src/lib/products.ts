@@ -3,434 +3,206 @@ import type { ChoiceItem, Product } from './menu';
 // セット商品のドリンク
 const setDrink: ChoiceItem = {
 	choices: [
-		{ name: 'ドリンクS', count: 1, priceAdjustment: 0 },
-		{ name: 'ドリンクM', count: 1, priceAdjustment: 130 },
-		{ name: 'ドリンクL', count: 1, priceAdjustment: 180 }
+		{ name: 'ドリンクM', count: 1, priceAdjustment: 0 },
+		{ name: 'ドリンクL', count: 1, priceAdjustment: 50 }
 	]
 };
 
 // 朝マック用ドリンク
 const breakfastDrink: ChoiceItem = {
 	choices: [
-		{ name: 'ドリンク(朝)S', count: 1, priceAdjustment: 0 },
-		{ name: 'ドリンク(朝)M', count: 1, priceAdjustment: 130 },
-		{ name: 'ドリンク(朝)L', count: 1, priceAdjustment: 180 }
+		{ name: 'ドリンク(朝)M', count: 1, priceAdjustment: 0 },
+		{ name: 'ドリンク(朝)L', count: 1, priceAdjustment: 50 }
 	]
 };
 
 // ポテト
-const setFriedPotato: ChoiceItem = {
+const setSideMenu: ChoiceItem = {
 	choices: [
-		{ name: 'マックフライポテトS', count: 1, priceAdjustment: 0 },
-		{ name: 'マックフライポテトM', count: 1, priceAdjustment: 130 },
-		{ name: 'マックフライポテトL', count: 1, priceAdjustment: 180 }
+		{ name: 'マックフライポテトS', count: 1, priceAdjustment: -50 },
+		{ name: 'マックフライポテトM', count: 1, priceAdjustment: 0 },
+		{ name: 'チキンマックナゲット', count: 5, priceAdjustment: 0 },
+		{ name: 'マックフライポテトL', count: 1, priceAdjustment: 50 }
 	]
 };
 
 // 朝マック用ハッシュポテト
 const breakfastPotato: ChoiceItem = {
-	choices: [
-		{ name: 'ハッシュポテトS', count: 1, priceAdjustment: 0 },
-		{ name: 'ハッシュポテトM', count: 1, priceAdjustment: 130 },
-		{ name: 'ハッシュポテトL', count: 1, priceAdjustment: 180 }
-	]
-};
-
-// オプションのナゲット
-const setNugget: ChoiceItem = {
-	choices: [
-		{ name: 'チキンマックナゲットなし', count: 0, priceAdjustment: 0 },
-		{ name: 'チキンマックナゲット', count: 5, priceAdjustment: 200 }
-	]
-};
-
-// ソース
-const setNuggetSauce: ChoiceItem = {
-	choices: [
-		{ name: 'ナゲットソースなし', count: 0, priceAdjustment: 0 },
-		{ name: 'エッグタルタルソース', count: 1, priceAdjustment: 0 },
-		{ name: '完熟トマトのピッツァ風ソース', count: 1, priceAdjustment: 0 },
-		{ name: 'バーベキューソース', count: 1, priceAdjustment: 0 },
-		{ name: 'マスタードソース', count: 1, priceAdjustment: 0 }
-	]
+	choices: [{ name: 'ハッシュポテト', count: 1, priceAdjustment: 0 }]
 };
 
 export const products: Product[] = [
 	// 夜マック
 	{
 		name: 'ごはんチキンタツタ タルタル南蛮 セット',
-		items: [
-			{ name: 'ごはんチキンタツタ タルタル南蛮', count: 1 },
-			setFriedPotato,
-			setDrink,
-			setNugget,
-			setNuggetSauce
-		],
+		items: [{ name: 'ごはんチキンタツタ タルタル南蛮', count: 1 }, setSideMenu, setDrink],
 		price: 850
 	},
 	{
 		name: 'ごはんチキンタツタ セット',
-		items: [
-			{ name: 'ごはんチキンタツタ', count: 1 },
-			setFriedPotato,
-			setDrink,
-			setNugget,
-			setNuggetSauce
-		],
+		items: [{ name: 'ごはんチキンタツタ', count: 1 }, setSideMenu, setDrink],
 		price: 800
 	},
 	{
 		name: '倍ビッグマック セット',
-		items: [
-			{ name: '倍ビッグマック', count: 1 },
-			setFriedPotato,
-			setDrink,
-			setNugget,
-			setNuggetSauce
-		],
+		items: [{ name: '倍ビッグマック', count: 1 }, setSideMenu, setDrink],
 		price: 990
 	},
 	{
 		name: '倍ダブルチーズバーガー セット',
-		items: [
-			{ name: '倍ダブルチーズバーガー', count: 1 },
-			setFriedPotato,
-			setDrink,
-			setNugget,
-			setNuggetSauce
-		],
+		items: [{ name: '倍ダブルチーズバーガー', count: 1 }, setSideMenu, setDrink],
 		price: 940
 	},
 	{
 		name: '倍てりやきマックバーガー セット',
-		items: [
-			{ name: '倍てりやきマックバーガー', count: 1 },
-			setFriedPotato,
-			setDrink,
-			setNugget,
-			setNuggetSauce
-		],
+		items: [{ name: '倍てりやきマックバーガー', count: 1 }, setSideMenu, setDrink],
 		price: 790
 	},
 	{
 		name: '倍フィレオフィッシュセット',
-		items: [
-			{ name: '倍フィレオフィッシュ', count: 1 },
-			setFriedPotato,
-			setDrink,
-			setNugget,
-			setNuggetSauce
-		],
+		items: [{ name: '倍フィレオフィッシュ', count: 1 }, setSideMenu, setDrink],
 		price: 800
 	},
 	{
 		name: '倍チキンフィレオセット',
-		items: [
-			{ name: '倍チキンフィレオ', count: 1 },
-			setFriedPotato,
-			setDrink,
-			setNugget,
-			setNuggetSauce
-		],
+		items: [{ name: '倍チキンフィレオ', count: 1 }, setSideMenu, setDrink],
 		price: 800
 	},
 	{
 		name: '倍てりやきチキンフィレオセット',
-		items: [
-			{ name: '倍てりやきチキンフィレオ', count: 1 },
-			setFriedPotato,
-			setDrink,
-			setNugget,
-			setNuggetSauce
-		],
+		items: [{ name: '倍てりやきチキンフィレオ', count: 1 }, setSideMenu, setDrink],
 		price: 810
 	},
 	{
 		name: '倍ベーコンレタスバーガー セット',
-		items: [
-			{ name: '倍ベーコンレタスバーガー', count: 1 },
-			setFriedPotato,
-			setDrink,
-			setNugget,
-			setNuggetSauce
-		],
+		items: [{ name: '倍ベーコンレタスバーガー', count: 1 }, setSideMenu, setDrink],
 		price: 810
 	},
 	{
 		name: '倍えびフィレオセット',
-		items: [
-			{ name: '倍えびフィレオ', count: 1 },
-			setFriedPotato,
-			setDrink,
-			setNugget,
-			setNuggetSauce
-		],
+		items: [{ name: '倍えびフィレオ', count: 1 }, setSideMenu, setDrink],
 		price: 820
 	},
 	{
 		name: '倍マックチキン セット',
-		items: [
-			{ name: '倍マックチキン', count: 1 },
-			setFriedPotato,
-			setDrink,
-			setNugget,
-			setNuggetSauce
-		],
+		items: [{ name: '倍マックチキン', count: 1 }, setSideMenu, setDrink],
 		price: 620
 	},
 	{
 		name: '倍スパチキ(辛スパイシーマックチキン) セット',
-		items: [
-			{ name: '倍スパチキ(辛スパイシーマックチキン)', count: 1 },
-			setFriedPotato,
-			setDrink,
-			setNugget,
-			setNuggetSauce
-		],
+		items: [{ name: '倍スパチキ(辛スパイシーマックチキン)', count: 1 }, setSideMenu, setDrink],
 		price: 660
 	},
 	{
 		name: '倍チキチー(倍マックチキンチーズ) セット',
-		items: [
-			{ name: '倍チキチー(倍マックチキンチーズ)', count: 1 },
-			setFriedPotato,
-			setDrink,
-			setNugget,
-			setNuggetSauce
-		],
+		items: [{ name: '倍チキチー(倍マックチキンチーズ)', count: 1 }, setSideMenu, setDrink],
 		price: 680
 	},
 	{
 		name: '倍エグチ(倍エッグチーズバーガー) セット',
-		items: [
-			{ name: '倍エグチ(倍エッグチーズバーガー)', count: 1 },
-			setFriedPotato,
-			setDrink,
-			setNugget,
-			setNuggetSauce
-		],
+		items: [{ name: '倍エグチ(倍エッグチーズバーガー)', count: 1 }, setSideMenu, setDrink],
 		price: 680
 	},
 	{
 		name: '倍ハンバーガー セット',
-		items: [
-			{ name: '倍ハンバーガー', count: 1 },
-			setFriedPotato,
-			setDrink,
-			setNugget,
-			setNuggetSauce
-		],
+		items: [{ name: '倍ハンバーガー', count: 1 }, setSideMenu, setDrink],
 		price: 620
 	},
 
 	// レギュラーセット
 	{
 		name: 'タルタル南蛮チキンタツタ 倍マックセット',
-		items: [
-			{ name: 'タルタル南蛮チキンタツタ 倍マック', count: 1 },
-			setFriedPotato,
-			setDrink,
-			setNugget,
-			setNuggetSauce
-		],
+		items: [{ name: 'タルタル南蛮チキンタツタ 倍マック', count: 1 }, setSideMenu, setDrink],
 		price: 890
 	},
 	{
 		name: 'チキンタツタ 倍マックセット',
-		items: [
-			{ name: 'チキンタツタ 倍マック', count: 1 },
-			setFriedPotato,
-			setDrink,
-			setNugget,
-			setNuggetSauce
-		],
+		items: [{ name: 'チキンタツタ 倍マック', count: 1 }, setSideMenu, setDrink],
 		price: 840
 	},
 	{
 		name: 'タルタル南蛮チキンタツタ セット',
-		items: [
-			{ name: 'タルタル南蛮チキンタツタ', count: 1 },
-			setFriedPotato,
-			setDrink,
-			setNugget,
-			setNuggetSauce
-		],
+		items: [{ name: 'タルタル南蛮チキンタツタ', count: 1 }, setSideMenu, setDrink],
 		price: 800
 	},
 	{
 		name: 'チキンタツタ セット',
-		items: [
-			{ name: 'チキンタツタ', count: 1 },
-			setFriedPotato,
-			setDrink,
-			setNugget,
-			setNuggetSauce
-		],
+		items: [{ name: 'チキンタツタ', count: 1 }, setSideMenu, setDrink],
 		price: 750
 	},
 	{
 		name: 'ビッグマック セット',
-		items: [
-			{ name: 'ビッグマック', count: 1 },
-			setFriedPotato,
-			setDrink,
-			setNugget,
-			setNuggetSauce
-		],
+		items: [{ name: 'ビッグマック', count: 1 }, setSideMenu, setDrink],
 		price: 750
 	},
 	{
 		name: '炙り醤油風 ダブル肉厚ビーフセット',
-		items: [
-			{ name: '炙り醤油風 ダブル肉厚ビーフ', count: 1 },
-			setFriedPotato,
-			setDrink,
-			setNugget,
-			setNuggetSauce
-		],
+		items: [{ name: '炙り醤油風 ダブル肉厚ビーフ', count: 1 }, setSideMenu, setDrink],
 		price: 850
 	},
 	{
 		name: '炙り醤油風 たまごベーコン肉厚ビーフセット',
-		items: [
-			{ name: '炙り醤油風 たまごベーコン肉厚ビーフ', count: 1 },
-			setFriedPotato,
-			setDrink,
-			setNugget,
-			setNuggetSauce
-		],
+		items: [{ name: '炙り醤油風 たまごベーコン肉厚ビーフ', count: 1 }, setSideMenu, setDrink],
 		price: 840
 	},
 	{
 		name: 'ダブルチーズバーガー セット',
-		items: [
-			{ name: 'ダブルチーズバーガー', count: 1 },
-			setFriedPotato,
-			setDrink,
-			setNugget,
-			setNuggetSauce
-		],
+		items: [{ name: 'ダブルチーズバーガー', count: 1 }, setSideMenu, setDrink],
 		price: 700
 	},
 	{
 		name: 'てりやきマックバーガー セット',
-		items: [
-			{ name: 'てりやきマックバーガー', count: 1 },
-			setFriedPotato,
-			setDrink,
-			setNugget,
-			setNuggetSauce
-		],
+		items: [{ name: 'てりやきマックバーガー', count: 1 }, setSideMenu, setDrink],
 		price: 670
 	},
 	{
 		name: 'フィレオフィッシュ セット',
-		items: [
-			{ name: 'フィレオフィッシュ', count: 1 },
-			setFriedPotato,
-			setDrink,
-			setNugget,
-			setNuggetSauce
-		],
+		items: [{ name: 'フィレオフィッシュ', count: 1 }, setSideMenu, setDrink],
 		price: 680
 	},
 	{
 		name: 'チキンフィレオ セット',
-		items: [
-			{ name: 'チキンフィレオ', count: 1 },
-			setFriedPotato,
-			setDrink,
-			setNugget,
-			setNuggetSauce
-		],
+		items: [{ name: 'チキンフィレオ', count: 1 }, setSideMenu, setDrink],
 		price: 680
 	},
 	{
 		name: 'てりやきチキンフィレオ セット',
-		items: [
-			{ name: 'てりやきチキンフィレオ', count: 1 },
-			setFriedPotato,
-			setDrink,
-			setNugget,
-			setNuggetSauce
-		],
+		items: [{ name: 'てりやきチキンフィレオ', count: 1 }, setSideMenu, setDrink],
 		price: 690
 	},
 	{
 		name: 'ベーコンレタスバーガー セット',
-		items: [
-			{ name: 'ベーコンレタスバーガー', count: 1 },
-			setFriedPotato,
-			setDrink,
-			setNugget,
-			setNuggetSauce
-		],
+		items: [{ name: 'ベーコンレタスバーガー', count: 1 }, setSideMenu, setDrink],
 		price: 690
 	},
 	{
 		name: 'えびフィレオ セット',
-		items: [
-			{ name: 'えびフィレオ', count: 1 },
-			setFriedPotato,
-			setDrink,
-			setNugget,
-			setNuggetSauce
-		],
+		items: [{ name: 'えびフィレオ', count: 1 }, setSideMenu, setDrink],
 		price: 700
 	},
 	{
 		name: 'マックチキン セット',
-		items: [
-			{ name: 'マックチキン', count: 1 },
-			setFriedPotato,
-			setDrink,
-			setNugget,
-			setNuggetSauce
-		],
+		items: [{ name: 'マックチキン', count: 1 }, setSideMenu, setDrink],
 		price: 500
 	},
 	{
 		name: 'スパチキ(スパイシーマックチキン) セット',
-		items: [
-			{ name: 'スパチキ(スパイシーマックチキン)', count: 1 },
-			setFriedPotato,
-			setDrink,
-			setNugget,
-			setNuggetSauce
-		],
+		items: [{ name: 'スパチキ(スパイシーマックチキン)', count: 1 }, setSideMenu, setDrink],
 		price: 540
 	},
 	{
 		name: 'チキチー(マックチキン チーズ) セット',
-		items: [
-			{ name: 'チキチー(マックチキン チーズ)', count: 1 },
-			setFriedPotato,
-			setDrink,
-			setNugget,
-			setNuggetSauce
-		],
+		items: [{ name: 'チキチー(マックチキン チーズ)', count: 1 }, setSideMenu, setDrink],
 		price: 560
 	},
 	{
 		name: 'エグチ(エッグチーズバーガー) セット',
-		items: [
-			{ name: 'エグチ(エッグチーズバーガー)', count: 1 },
-			setFriedPotato,
-			setDrink,
-			setNugget,
-			setNuggetSauce
-		],
+		items: [{ name: 'エグチ(エッグチーズバーガー)', count: 1 }, setSideMenu, setDrink],
 		price: 560
 	},
 	{
 		name: 'ハンバーガー セット',
-		items: [
-			{ name: 'ハンバーガー', count: 1 },
-			setFriedPotato,
-			setDrink,
-			setNugget,
-			setNuggetSauce
-		],
+		items: [{ name: 'ハンバーガー', count: 1 }, setSideMenu, setDrink],
 		price: 500
 	},
 
@@ -543,27 +315,27 @@ export const products: Product[] = [
 	// ひるまック
 	{
 		name: 'ひるまック ビッグマック セット',
-		items: [{ name: 'ビッグマック', count: 1 }, setFriedPotato, setDrink],
+		items: [{ name: 'ビッグマック', count: 1 }, setSideMenu, setDrink],
 		price: 680
 	},
 	{
 		name: 'ひるまック てりやきチキンフィレオ セット',
-		items: [{ name: 'てりやきチキンフィレオ', count: 1 }, setFriedPotato, setDrink],
+		items: [{ name: 'てりやきチキンフィレオ', count: 1 }, setSideMenu, setDrink],
 		price: 630
 	},
 	{
 		name: 'ひるまック ダブルチーズバーガー セット',
-		items: [{ name: 'ダブルチーズバーガー', count: 1 }, setFriedPotato, setDrink],
+		items: [{ name: 'ダブルチーズバーガー', count: 1 }, setSideMenu, setDrink],
 		price: 640
 	},
 	{
 		name: 'ひるまック てりやきマックバーガー セット',
-		items: [{ name: 'てりやきマックバーガー', count: 1 }, setFriedPotato, setDrink],
+		items: [{ name: 'てりやきマックバーガー', count: 1 }, setSideMenu, setDrink],
 		price: 600
 	},
 	{
 		name: 'ひるまック フィレオフィッシュ セット',
-		items: [{ name: 'フィレオフィッシュ', count: 1 }, setFriedPotato, setDrink],
+		items: [{ name: 'フィレオフィッシュ', count: 1 }, setSideMenu, setDrink],
 		price: 620
 	},
 
@@ -616,7 +388,15 @@ export const products: Product[] = [
 	},
 	{
 		name: 'マックフライポテト',
-		items: [setFriedPotato],
+		items: [
+			{
+				choices: [
+					{ name: 'マックフライポテトS', count: 1, priceAdjustment: 0 },
+					{ name: 'マックフライポテトM', count: 1, priceAdjustment: 130 },
+					{ name: 'マックフライポテトL', count: 1, priceAdjustment: 180 }
+				]
+			}
+		],
 		price: 200
 	},
 	{
@@ -890,17 +670,18 @@ export const products: Product[] = [
 		price: 420
 	},
 
-	// ソース類
-	{
-		name: 'ソース',
-		items: [setNuggetSauce],
-		price: 40
-	},
-
 	// ドリンク類
 	{
 		name: 'ドリンク',
-		items: [setDrink],
-		price: 140
+		items: [
+			{
+				choices: [
+					{ name: 'ドリンクS', count: 1, priceAdjustment: -130 },
+					{ name: 'ドリンクM', count: 1, priceAdjustment: 0 },
+					{ name: 'ドリンクL', count: 1, priceAdjustment: 50 }
+				]
+			}
+		],
+		price: 270
 	}
 ];
